@@ -1,0 +1,30 @@
+<p>
+  <strong>Tweet:</strong><br>
+  <%= text_area_tag(:message, @tweet.content, size: "24x6", readonly: true) %> <br>
+  <strong>Posted by:</strong> 
+  <%= User.find(@tweet.user_id).username %> <br>
+  <strong>Posted at:</strong> 
+  <%= time_ago_in_words(@tweet.created_at) %> ago
+</p>
+ 
+<p>
+  <strong>Likes:</strong>
+  <%= @tweet.likes.count %> 
+  <%= form_with(url: "/tweets/"+@tweet.id.to_s+"/likes", local: true) do |form| %>
+  <%= form.hidden_field :tweet_id, :value => @tweet.id %>
+  <%= form.hidden_field :user_id, :value => session[:user_id] %>
+  <%= form.submit "Like" %>
+  <% end %>
+  </p>
+  <br>  
+  <p>
+  <strong>Dislikes:</strong>
+  <%= @tweet.dislikes.count %>
+  <%= form_with(url: "/tweets/"+@tweet.id.to_s+"/dislikes", local: true) do |form| %>
+  <%= form.hidden_field :tweet_id, :value => @tweet.id %>
+  <%= form.hidden_field :user_id, :value => session[:user_id] %>
+  <%= form.submit "Dislike" %>
+  <% end %>
+</p>
+
+<%= link_to 'Back', tweets_path %>

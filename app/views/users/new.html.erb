@@ -1,0 +1,28 @@
+<% provide(:title, "Sign up") %>
+<h1>Sign up</h1>
+
+<%= form_with model: @user, local: true do |form| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited
+        this user from being saved:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
+  <p>
+    <%= form.label :username %><br>
+    <%= form.search_field :username %>
+  </p><br>
+ 
+  <p>
+    <%= form.submit "Sign up" %>
+  </p><br>
+<% end %>
