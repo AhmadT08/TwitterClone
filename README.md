@@ -19,3 +19,5 @@ Password: password
 The date column is clickable, which allows for chronological sorting by ascending or descending order.
 
 Likes and dislikes can be accessed within each individual tweet.
+
+The project name is "twitter".
