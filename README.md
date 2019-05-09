@@ -1,24 +1,23 @@
-# README
+# Mini Twitter
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+Clone the repository and run rails server in the command terminal
+```bash
+bin/rails server
+```
 
-* System dependencies
+## Notes
 
-* Configuration
+The admin interface can be accessed via http://localhost:3000/admin.
 
-* Database creation
+Username: admin
 
-* Database initialization
+Password: password
 
-* How to run the test suite
+The date column is clickable, which allows for chronological sorting by ascending or descending order.
 
-* Services (job queues, cache servers, search engines, etc.)
+Likes and dislikes can be accessed within each individual tweet.
 
-* Deployment instructions
-
-* ...
+The project name in Rails is "twitter".
