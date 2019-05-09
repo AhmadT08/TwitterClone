@@ -13,7 +13,11 @@
   <%= form_with(url: "/tweets/"+@tweet.id.to_s+"/likes", local: true) do |form| %>
   <%= form.hidden_field :tweet_id, :value => @tweet.id %>
   <%= form.hidden_field :user_id, :value => session[:user_id] %>
-  <%= form.submit "Like" %>
+    <% if @tweet.likes.find_by(user_id: session[:user_id])%>
+      <%= form.submit "Unlike" %>
+    <% else %>
+      <%= form.submit "Like" %>
+    <% end %>
   <% end %>
   </p>
   <br>  
@@ -23,7 +27,11 @@
   <%= form_with(url: "/tweets/"+@tweet.id.to_s+"/dislikes", local: true) do |form| %>
   <%= form.hidden_field :tweet_id, :value => @tweet.id %>
   <%= form.hidden_field :user_id, :value => session[:user_id] %>
-  <%= form.submit "Dislike" %>
+    <% if @tweet.dislikes.find_by(user_id: session[:user_id])%>
+      <%= form.submit "Undislike" %>
+    <% else %>
+      <%= form.submit "Dislike" %>
+    <% end %>
   <% end %>
 </p>
 
