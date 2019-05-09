@@ -15,18 +15,27 @@ class DislikesController < ApplicationController
         @dislike = @tweet.dislikes.new(dislike_params)
 
         if !@tweet.dislikes.find_by(user_id: params[:user_id]) && @dislike.save
-            render 'tweets/show'
+            if @tweet.likes.find_by(user_id: params[:user_id]) != nil
+                @tweet.likes.find_by(user_id: params[:user_id]).destroy
+            end
         else
             destroy
+            return
         end
+        redirect_to '/tweets/' + @tweet.id.to_s
     end
 
-    def destroy
-        @user = User.find(session[:user_id])
-        @tweet = Tweet.find(params[:tweet_id])
-        @dislike = @tweet.dislikes.find_by(user_id: params[:user_id])
-        @dislike.destroy
-        render 'tweets/show'
+    def destroy 
+        @tweet.dislikes.find_by(user_id: session[:user_id]).destroy
+        redirect_to '/tweets/' + @tweet.id.to_s
+    end
+
+    def exists?
+        if @tweet.dislikes.find_by(user_id: session[:user_id]) != nil
+            return true
+        else
+            return false
+        end
     end
     
     private
