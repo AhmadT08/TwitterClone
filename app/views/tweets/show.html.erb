@@ -14,9 +14,9 @@
   <%= form.hidden_field :tweet_id, :value => @tweet.id %>
   <%= form.hidden_field :user_id, :value => session[:user_id] %>
     <% if @tweet.likes.find_by(user_id: session[:user_id])%>
-      <%= form.submit "Unlike" %>
+      <%= image_submit_tag('like enabled.png', width: "50", height: "50")%>
     <% else %>
-      <%= form.submit "Like" %>
+      <%= image_submit_tag('like.png', width: "50", height: "50")%>
     <% end %>
   <% end %>
   </p>
@@ -28,9 +28,9 @@
   <%= form.hidden_field :tweet_id, :value => @tweet.id %>
   <%= form.hidden_field :user_id, :value => session[:user_id] %>
     <% if @tweet.dislikes.find_by(user_id: session[:user_id])%>
-      <%= form.submit "Undislike" %>
+      <%= image_submit_tag('dislike enabled.png', width: "50", height: "50")%>
     <% else %>
-      <%= form.submit "Dislike" %>
+      <%= image_submit_tag('dislike.png', width: "50", height: "50")%>
     <% end %>
   <% end %>
 </p>
